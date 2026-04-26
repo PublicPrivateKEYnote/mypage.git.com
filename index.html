@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jayson Chalanag | IT Professional & Programmer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Interactive Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Custom Typing Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Subtle Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white text-gray-800 selection:bg-red-200 selection:text-red-900">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100 shadow-sm transition-all duration-300 py-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0 flex items-center group">
+                    <a href="#home" class="font-extrabold text-2xl tracking-tight text-red-600 transition-transform duration-300 group-hover:scale-105 inline-block">
+                        GON<span class="text-gray-800 transition-colors">DAR</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="nav-link text-sm text-gray-600 hover:text-red-600 font-semibold transition-all duration-300 hover:-translate-y-0.5" data-section="about">About</a>
+                    <a href="#skills" class="nav-link text-sm text-gray-600 hover:text-red-600 font-semibold transition-all duration-300 hover:-translate-y-0.5" data-section="skills">Skills</a>
+                    <a href="#experience" class="nav-link text-sm text-gray-600 hover:text-red-600 font-semibold transition-all duration-300 hover:-translate-y-0.5" data-section="experience">Experience</a>
+                    <a href="#projects" class="nav-link text-sm text-gray-600 hover:text-red-600 font-semibold transition-all duration-300 hover:-translate-y-0.5" data-section="projects">Projects</a>
+                    <a href="#education" class="nav-link text-sm text-gray-600 hover:text-red-600 font-semibold transition-all duration-300 hover:-translate-y-0.5" data-section="education">Education</a>
+                    <a href="#contact" class="bg-red-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-700 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95">
+                        Let's Talk
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-red-600 focus:outline-none p-2 bg-gray-50 rounded-lg">
+                        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" x2="20" y1="12" y2="12"></line>
+                            <line x1="4" x2="20" y1="6" y2="6"></line>
+                            <line x1="4" x2="20" y1="18" y2="18"></line>
+                        </svg>
+                        <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" x2="6" y1="6" y2="18"></line>
+                            <line x1="6" x2="18" y1="6" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl shadow-gray-200/50">
+            <div class="px-4 pt-2 pb-6 space-y-1 flex flex-col">
+                <a href="#about" class="mobile-link block w-full px-4 py-3 text-sm font-semibold text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg">About</a>
+                <a href="#skills" class="mobile-link block w-full px-4 py-3 text-sm font-semibold text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg">Skills</a>
+                <a href="#experience" class="mobile-link block w-full px-4 py-3 text-sm font-semibold text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg">Experience</a>
+                <a href="#projects" class="mobile-link block w-full px-4 py-3 text-sm font-semibold text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg">Projects</a>
+                <a href="#education" class="mobile-link block w-full px-4 py-3 text-sm font-semibold text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg">Education</a>
+                <a href="#contact" class="mobile-link block w-full text-center mt-4 px-4 py-3 text-sm font-semibold bg-red-600 text-white rounded-lg shadow-sm">Let's Talk</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 px-4 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 min-h-[90vh] justify-center">
+        <div class="flex-1 text-center md:text-left z-10">
+            <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-700 font-semibold text-sm mb-6 border border-red-100 shadow-sm">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <span>Available for new opportunities</span>
+            </div>
+            <h1 class="reveal delay-100 text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">
+                Hi, I'm <span class="text-gradient bg-gradient-to-r from-red-600 to-rose-500">Jayson.</span><br/>
+                <span class="text-3xl md:text-5xl text-gray-700 font-bold mt-2 block min-h-[80px] md:min-h-[72px] h-auto">
+                    I am a <span id="typed-text" class="text-red-600 typing-cursor"></span>
+                </span>
+            </h1>
+            <p class="reveal delay-200 text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed font-light">
+                Bridging the gap between robust network infrastructure and efficient software solutions. Based in Ifugao, optimizing systems to perform at their best.
+            </p>
+            <div class="reveal delay-300 flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                <a href="#projects" class="group w-full sm:w-auto px-8 py-4 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 hover:shadow-lg hover:shadow-red-200 transition-all duration-300 hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2">
+                    View Portfolio
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+                        <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-full font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 hover:-translate-y-1 active:scale-95 text-center shadow-sm">
+                    Contact Me
+                </a>
+            </div>
+        </div>
+        
+        <div class="reveal delay-200 flex-1 relative flex justify-center md:justify-end group cursor-pointer w-full max-w-md mx-auto md:max-w-none">
+            <div class="relative w-72 h-72 md:w-[450px] md:h-[450px]">
+                <!-- Abstract Background Blobs -->
+                <div class="absolute top-0 -left-4 w-72 h-72 bg-red-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+                <div class="absolute top-0 -right-4 w-72 h-72 bg-rose-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
+                <div class="absolute -bottom-8 left-20 w-72 h-72 bg-orange-100 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000"></div>
+                
+                <!-- Profile Image container -->
+                <div class="relative w-full h-full rounded-3xl border border-white/50 shadow-2xl bg-white/50 backdrop-blur-sm overflow-hidden flex items-center justify-center transform transition-all duration-500 group-hover:-translate-y-2">
+                    <img 
+                        src="Image/Gon.jpg" 
+                        onerror="this.src='https://placehold.co/600x600/fee2e2/dc2626?text=Jayson+C.'"
+                        alt="Jayson Chalanag" 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-tr from-red-900/10 to-transparent"></div>
+                </div>
+
+                <!-- Floating Tech Badge -->
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 transform transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-3 z-20 hidden md:flex">
+                    <div class="bg-red-100 p-2.5 rounded-xl text-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-gray-800">IT Specialist</p>
+                        <p class="text-xs text-gray-500 font-medium">Network & Code</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Stats / About -->
+    <div id="about" class="bg-gray-900 text-white py-16 scroll-mt-20 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-500 via-transparent to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-8 md:gap-24 relative z-10">
+            <div class="reveal text-center w-full sm:w-auto">
+                <h3 class="text-4xl md:text-5xl font-extrabold mb-2 text-white">2+</h3>
+                <p class="text-red-300 font-semibold tracking-wide text-sm uppercase">Years Experience</p>
+            </div>
+            <div class="hidden sm:block w-px h-16 bg-gray-700"></div>
+            <div class="reveal delay-100 text-center w-full sm:w-auto">
+                <h3 class="text-4xl md:text-5xl font-extrabold mb-2 text-white">100%</h3>
+                <p class="text-red-300 font-semibold tracking-wide text-sm uppercase">System Uptime Focus</p>
+            </div>
+            <div class="hidden sm:block w-px h-16 bg-gray-700"></div>
+            <div class="reveal delay-200 text-center w-full sm:w-auto">
+                <h3 class="text-4xl md:text-5xl font-extrabold mb-2 text-white">10+</h3>
+                <p class="text-red-300 font-semibold tracking-wide text-sm uppercase">Tech Stacks Mastered</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="py-24 bg-gray-50 px-4 scroll-mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Technical Arsenal</h2>
+                <div class="w-20 h-1.5 bg-red-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">A comprehensive overview of my technical skills across networking, hardware troubleshooting, and software development.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Networking -->
+                <div class="reveal bg-white p-8 rounded-2xl border border-gray-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600 mb-6 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Networking & Hardware</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">LAN/WAN Setup</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">Troubleshooting</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">Hardware Maintenance</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">System Admin</span>
+                    </div>
+                </div>
+
+                <!-- Programming -->
+                <div class="reveal delay-100 bg-white p-8 rounded-2xl border border-gray-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600 mb-6 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Software Development</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">HTML/CSS</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">JavaScript</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">PHP</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Soft Skills / Tools -->
+                <div class="reveal delay-200 bg-white p-8 rounded-2xl border border-gray-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-600 mb-6 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Tools & Instruction</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">IT Support</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">Mentoring</span>
+                        <span class="px-3 py-1 bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg font-medium">Helpdesk Tools</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-white px-4 scroll-mt-20 border-y border-gray-200">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Professional Experience</h2>
+                <div class="w-20 h-1.5 bg-red-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Job 1 -->
+                <div class="reveal delay-100 bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-red-200 transition-all duration-300 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-red-600"></div>
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="bg-red-100 p-4 rounded-xl text-red-600 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <div class="w-full">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900">IFUGAO STATE UNIVERSITY</h3>
+                                    <h4 class="text-lg text-red-600 font-semibold mt-1">Instructor / Potia-Campus</h4>
+                                </div>
+                                <span class="inline-block mt-3 md:mt-0 px-4 py-1.5 bg-red-100 text-red-700 rounded-full text-sm font-semibold border border-red-200 whitespace-nowrap">
+                                    Jul 2025 - Present
+                                </span>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed mt-4">
+                                Delivered lectures and hands-on laboratory sessions in programming and computer networking. Developed instructional materials, assessments, and practical activities while guiding students in coding, network setup, and troubleshooting to strengthen their technical and analytical skills.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="reveal delay-200 bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-red-200 transition-all duration-300 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-gray-300 group-hover:bg-red-400 transition-colors duration-300"></div>
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="bg-white border border-gray-200 p-4 rounded-xl text-gray-500 shrink-0 group-hover:text-red-500 group-hover:bg-red-50 group-hover:border-red-100 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <div class="w-full">
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900">Foundever Global</h3>
+                                    <h4 class="text-lg text-gray-700 font-semibold mt-1">IT Systems Specialist II</h4>
+                                </div>
+                                <span class="inline-block mt-3 md:mt-0 px-4 py-1.5 bg-white text-gray-700 rounded-full text-sm font-semibold border border-gray-200 whitespace-nowrap">
+                                    Jul 2024 - Jul 2025
+                                </span>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed mt-4">
+                               Provided technical support and system maintenance as an IT Systems Specialist. Managed troubleshooting of hardware, software, and network-related issues while ensuring stable and secure IT operations for employees and organizational systems.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section Placeholder -->
+    <section id="projects" class="py-24 bg-gray-50 px-4 scroll-mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1.5 bg-red-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="reveal bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:border-red-200 transition-all duration-300 group flex flex-col">
+                    <div class="h-48 bg-gray-100 relative overflow-hidden flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300 group-hover:text-red-300 group-hover:scale-110 transition-all duration-500"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Campus Network Setup</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">Designed and implemented a secure, scalable local area network for educational lab environments to ensure high-speed student access.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-md">Networking</span>
+                            <span class="text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-md">Hardware</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="reveal delay-100 bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:border-red-200 transition-all duration-300 group flex flex-col">
+                    <div class="h-48 bg-gray-100 relative overflow-hidden flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300 group-hover:text-red-300 group-hover:scale-110 transition-all duration-500"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Student Portal System</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">Developed a front-end web interface allowing students to track assignments, schedules, and grades efficiently.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-md">HTML/CSS</span>
+                            <span class="text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-md">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="reveal delay-200 bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:border-red-200 transition-all duration-300 group flex flex-col">
+                    <div class="h-48 bg-gray-100 relative overflow-hidden flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300 group-hover:text-red-300 group-hover:scale-110 transition-all duration-500"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">IT Helpdesk Dashboard</h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">Created a centralized dashboard to track, assign, and resolve internal hardware and software tickets across the organization.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-md">System Admin</span>
+                            <span class="text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-md">PHP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 bg-white border-t border-gray-200 px-4 scroll-mt-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Education Journey</h2>
+                <div class="w-20 h-1.5 bg-red-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Edu 1 -->
+                <div class="reveal delay-100 bg-gray-50 border border-gray-200 p-8 rounded-2xl hover:border-red-300 hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
+                    <div class="bg-red-100 w-14 h-14 rounded-xl flex items-center justify-center text-red-600 mb-6 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Ifugao State University - Potia Campus</h3>
+                    <h4 class="text-base text-red-600 font-semibold mb-4">Bachelor of Science in Information Technology</h4>
+                    <div class="mt-auto">
+                        <span class="inline-block px-3 py-1 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-semibold">
+                            Class of 2024
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Edu 2 -->
+                <div class="reveal delay-200 bg-gray-50 border border-gray-200 p-8 rounded-2xl hover:border-red-300 hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
+                    <div class="bg-white border border-gray-200 w-14 h-14 rounded-xl flex items-center justify-center text-gray-500 mb-6 group-hover:scale-110 group-hover:bg-red-600 group-hover:border-red-600 group-hover:text-white transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">La Patria Sable - Senior High School</h3>
+                    <h4 class="text-base text-gray-600 font-semibold mb-4">Information and Communication Technology</h4>
+                    <div class="mt-auto">
+                        <span class="inline-block px-3 py-1 bg-white border border-gray-200 text-gray-600 rounded-lg text-sm font-semibold">
+                            Class of 2020
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gray-900 text-white px-4 relative overflow-hidden scroll-mt-20">
+        <!-- Abstract background shapes -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-red-600 blur-[100px] opacity-30"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-rose-600 blur-[120px] opacity-20"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <h2 class="reveal text-4xl md:text-5xl font-extrabold mb-6">Let's Create Something Together</h2>
+            <p class="reveal delay-100 text-lg text-gray-300 mb-12 max-w-2xl mx-auto font-light">
+                Whether you have a network infrastructure project in mind, need software troubleshooting, or just want to connect, feel free to reach out.
+            </p>
+            
+            <div class="reveal delay-200 flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a href="mailto:chalanagigon@gmail.com" class="group flex items-center gap-3 bg-red-600 hover:bg-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-red-500/30 w-full sm:w-auto justify-center active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-300 group-hover:-translate-y-1">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    Send an Email
+                </a>
+                <a href="https://www.facebook.com/NOG0404" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 border border-white/20 hover:border-white/40 w-full sm:w-auto justify-center active:scale-95 backdrop-blur-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-300 group-hover:scale-110">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" x2="21" y1="14" y2="3"></line>
+                    </svg>
+                    Connect on Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button 
+        id="back-to-top"
+        class="fixed bottom-8 right-8 bg-gray-900 text-white p-3.5 rounded-full shadow-xl hover:bg-red-600 hover:scale-110 transition-all duration-300 z-50 group translate-y-16 opacity-0 pointer-events-none"
+        aria-label="Back to top"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-500 py-8 border-t border-gray-900">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p id="copyright-year" class="text-sm"></p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set dynamic year
+        document.getElementById('copyright-year').textContent = `© ${new Date().getFullYear()} Jayson Chalanag. All rights reserved.`;
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        const navbar = document.getElementById('navbar');
+        const backToTopBtn = document.getElementById('back-to-top');
+        const sections = document.querySelectorAll('section, div[id="about"]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Scroll Events
+        window.addEventListener('scroll', () => {
+            let currentScroll = window.scrollY;
+
+            // Shrink/Fade Navbar
+            if (currentScroll > 50) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-3', 'shadow-sm');
+                navbar.classList.replace('bg-white/90', 'bg-white/95');
+            } else {
+                navbar.classList.add('py-3', 'shadow-sm');
+                navbar.classList.remove('py-2', 'shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/90');
+            }
+
+            // Toggle Back to Top Button
+            if (currentScroll > 400) {
+                backToTopBtn.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+            } else {
+                backToTopBtn.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+            }
+
+            // Scroll Spy
+            sections.forEach(sec => {
+                const top = window.scrollY;
+                const offset = sec.offsetTop - 150;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+
+                if(top >= offset && top < offset + height) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-red-600', 'font-bold');
+                        if(link.getAttribute('data-section') === id) {
+                            link.classList.add('text-red-600', 'font-bold');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Back to Top Button logic
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for Scroll Animations
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Typing Effect Logic
+        const textElement = document.getElementById("typed-text");
+        const words = ["Programmer", "Network Specialist", "IT Support Engineer"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typingSpeed = 500; // Pause before typing next word
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+
+        // Start typing effect after a short delay
+        setTimeout(typeEffect, 1000);
+
+    </script>
+</body>
+</html>
